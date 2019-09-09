@@ -51,7 +51,7 @@ func (o OktaPlugin) EntityCreate(e, de pb.Entity) (pb.Entity, error) {
 // EntityUpdate pushes changes to the base entity profile, nothing
 // else.  Custom attributes are not supported in this plugin.
 func (o OktaPlugin) EntityUpdate(e pb.Entity) (pb.Entity, error) {
-	oktaID := getOktaID(e)
+	oktaID := getEntityOktaID(e)
 	if oktaID == "" {
 		return e, nil
 	}
@@ -87,7 +87,7 @@ func (o OktaPlugin) EntityUpdate(e pb.Entity) (pb.Entity, error) {
 
 // EntityLock translates to a suspended entity in Okta.
 func (o OktaPlugin) EntityLock(e pb.Entity) (pb.Entity, error) {
-	oktaID := getOktaID(e)
+	oktaID := getEntityOktaID(e)
 	if oktaID == "" {
 		return e, nil
 	}
@@ -102,7 +102,7 @@ func (o OktaPlugin) EntityLock(e pb.Entity) (pb.Entity, error) {
 
 // EntityUnlock translates to a force un-suspend in Okta.
 func (o OktaPlugin) EntityUnlock(e pb.Entity) (pb.Entity, error) {
-	oktaID := getOktaID(e)
+	oktaID := getEntityOktaID(e)
 	if oktaID == "" {
 		return e, nil
 	}
@@ -119,7 +119,7 @@ func (o OktaPlugin) EntityUnlock(e pb.Entity) (pb.Entity, error) {
 // bad, but if you must, then this function will ensure that users in
 // Okta have also been wiped.
 func (o OktaPlugin) EntityDestroy(e pb.Entity) error {
-	oktaID := getOktaID(e)
+	oktaID := getEntityOktaID(e)
 	if oktaID == "" {
 		return nil
 	}
