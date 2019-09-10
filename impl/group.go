@@ -19,13 +19,11 @@ func (o OktaPlugin) GroupCreate(g pb.Group) (pb.Group, error) {
 		},
 	}
 
-	group, resp, err := o.c.Group.CreateGroup(og)
+	group, _, err := o.c.Group.CreateGroup(og)
 	if err != nil {
 		appLogger.Error("Okta group was not created!", "error", err)
 		return g, err
 	}
-
-	appLogger.Debug("Okta Response", "response", resp)
 
 	g.UntypedMeta = tree.PatchKeyValueSlice(g.UntypedMeta, "UPSERT", "oktaID", group.Id)
 
@@ -40,23 +38,19 @@ func (o OktaPlugin) GroupUpdate(g pb.Group) (pb.Group, error) {
 		return g, nil
 	}
 
-	grp, resp, err := o.c.Group.GetGroup(oktaID, nil)
+	grp, _, err := o.c.Group.GetGroup(oktaID, nil)
 	if err != nil {
 		appLogger.Warn("No group with OktaID", "name", g.GetName(), "oktaID", oktaID, "error", err)
 		return g, nil
 	}
 
-	appLogger.Debug("Okta Response", "response", resp)
-
 	grp.Profile.Description = g.GetDisplayName()
 
-	_, resp, err = o.c.Group.UpdateGroup(oktaID, *grp)
+	_, _, err = o.c.Group.UpdateGroup(oktaID, *grp)
 	if err != nil {
 		appLogger.Warn("Error updating Okta group", "error", err)
 		return g, nil
 	}
-
-	appLogger.Debug("Okta Response", "response", resp)
 
 	return g, nil
 }

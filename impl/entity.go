@@ -31,13 +31,11 @@ func (o OktaPlugin) EntityCreate(e, de pb.Entity) (pb.Entity, error) {
 		Profile:     &profile,
 	}
 
-	user, resp, err := o.c.User.CreateUser(*u, nil)
+	user, _, err := o.c.User.CreateUser(*u, nil)
 	if err != nil {
 		appLogger.Error("Okta user was not created!", "error", err)
 		return e, err
 	}
-
-	appLogger.Debug("Okta Response", "response", resp)
 
 	if e.Meta == nil {
 		e.Meta = &pb.EntityMeta{}
@@ -56,7 +54,7 @@ func (o OktaPlugin) EntityUpdate(e pb.Entity) (pb.Entity, error) {
 		return e, nil
 	}
 
-	user, resp, err := o.c.User.GetUser(oktaID)
+	user, _, err := o.c.User.GetUser(oktaID)
 	if err != nil {
 		appLogger.Warn("No user with OktaID", "id", oktaID, "error", err)
 		return e, nil
@@ -76,12 +74,11 @@ func (o OktaPlugin) EntityUpdate(e pb.Entity) (pb.Entity, error) {
 	updatedUser := &okta.User{
 		Profile: &newProfile,
 	}
-	_, resp, err = o.c.User.UpdateUser(oktaID, *updatedUser, nil)
+	_, _, err = o.c.User.UpdateUser(oktaID, *updatedUser, nil)
 	if err != nil {
 		appLogger.Warn("Error updating Okta user", "error", err)
 		return e, nil
 	}
-	appLogger.Debug("Okta Response", "response", resp)
 	return e, nil
 }
 
