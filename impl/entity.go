@@ -133,3 +133,33 @@ func (o OktaPlugin) EntityDestroy(e pb.Entity) (pb.Entity, error) {
 
 	return e, nil
 }
+
+// PostSecretChange propogates the secret change directly to Okta via
+// an administrative password change.  Technically this pushes a
+// plaintext password to Okta, and its assumed that Okta will do the
+// right thing with it.  The alternative is syncing a hash (which is
+// antithetical to the core design of netauth) or not syncing the
+// change.  Given that this is no different from an admin logging in
+// and resetting the password, its probably fine.
+func (o OktaPlugin) PostSecretChange(e, de pb.Entity) (pb.Entity, error) {
+	oktaID := getEntityOktaID(e)
+	if oktaID == "" {
+		return e, nil
+	}
+
+	p := &okta.PasswordCredential{
+		Value: de.GetSecret(),
+	}
+	uc := &okta.UserCredentials{
+		Password: p,
+	}
+	updatedUser := &okta.User{
+		Credentials: uc,
+	}
+	_, _, err := o.c.User.UpdateUser(oktaID, *updatedUser, nil)
+	if err != nil {
+		appLogger.Warn("Error updating Okta user", "error", err)
+		return e, nil
+	}
+	return e, nil
+}
