@@ -12,6 +12,8 @@ github.com/NetAuth/NetAuth v0.1.5-0.20190908040708-99f89c21459d h1:iVa8DbFqvzhxP
 github.com/NetAuth/NetAuth v0.1.5-0.20190908040708-99f89c21459d/go.mod h1:7RO3RQKSobRoghtojZ8hA/SBylqEGteZ+xhYU/IexC8=
 github.com/NetAuth/NetAuth v0.1.5-0.20190908061829-d33cf3914de8 h1:kXkjpX4l8wZvQ6N/EElUKgA2wUbRSTFHAlXFXOE7bWo=
 github.com/NetAuth/NetAuth v0.1.5-0.20190908061829-d33cf3914de8/go.mod h1:7RO3RQKSobRoghtojZ8hA/SBylqEGteZ+xhYU/IexC8=
+github.com/NetAuth/NetAuth v0.1.5-0.20190910041404-507f94268003 h1:Z3A9fbRGDl/RWHcTOPdZL2PevJgNGjcA8qEF9LTpbnk=
+github.com/NetAuth/NetAuth v0.1.5-0.20190910041404-507f94268003/go.mod h1:7RO3RQKSobRoghtojZ8hA/SBylqEGteZ+xhYU/IexC8=
 github.com/NetAuth/Protocol v0.0.0-20190121213421-fa32b3772b23/go.mod h1:CO+2Q2H4PqOcK9PO0fBxaZrygsIjTHn3k+f24c+Qmj0=
 github.com/NetAuth/Protocol v0.0.0-20190423042654-b6296098bf96 h1:sA8zUayQTmfIbRd98R8KS/AewfohWiwTWt5K+m+dPLk=
 github.com/NetAuth/Protocol v0.0.0-20190423042654-b6296098bf96/go.mod h1:CO+2Q2H4PqOcK9PO0fBxaZrygsIjTHn3k+f24c+Qmj0=

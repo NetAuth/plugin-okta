@@ -30,7 +30,7 @@ func init() {
 
 	viper.SetDefault("log.level", "INFO")
 	appLogger = hclog.New(&hclog.LoggerOptions{
-		Name:  "fail2lock",
+		Name:  "okta",
 		Level: hclog.LevelFromString(viper.GetString("log.level")),
 	})
 	hclog.SetDefault(appLogger)

@@ -118,10 +118,10 @@ func (o OktaPlugin) EntityUnlock(e pb.Entity) (pb.Entity, error) {
 // EntityDestroy should never be used, deleting users is generally
 // bad, but if you must, then this function will ensure that users in
 // Okta have also been wiped.
-func (o OktaPlugin) EntityDestroy(e pb.Entity) error {
+func (o OktaPlugin) EntityDestroy(e pb.Entity) (pb.Entity, error) {
 	oktaID := getEntityOktaID(e)
 	if oktaID == "" {
-		return nil
+		return e, nil
 	}
 
 	_, err := o.c.User.DeactivateUser(oktaID, nil)
@@ -134,5 +134,5 @@ func (o OktaPlugin) EntityDestroy(e pb.Entity) error {
 		appLogger.Warn("Failed to delete Okta user", "entity", e.GetID(), "error", err)
 	}
 
-	return nil
+	return e, nil
 }

@@ -64,17 +64,29 @@ func (o OktaPlugin) GroupUpdate(g pb.Group) (pb.Group, error) {
 // GroupDestroy pushes the destruction of groups to Okta.  It is
 // recommended to never destroy a group, but if this is desired this
 // function will ensure the group is removed in Okta as well.
-func (o OktaPlugin) GroupDestroy(g pb.Group) error {
+func (o OktaPlugin) GroupDestroy(g pb.Group) (pb.Group, error) {
 	appLogger.Info("Attempting to remove group from Okta", "group", g.GetName())
 	oktaID := getGroupOktaID(g)
 	if oktaID == "" {
-		return nil
-	}
-	resp, err := o.c.Group.DeleteGroup(oktaID)
-	if err != nil {
-		appLogger.Warn("Failed to delete Okta Group", "group", g.GetName(), "oktaID", oktaID, "error", err)
+		return g, nil
 	}
 
-	appLogger.Debug("Okta Response", "response", resp)
-	return nil
+	// Deleting groups in Okta appears to be very racy, and this
+	// often leads to groups not actually being deleted.  The fix
+	// is to keep trying to get the group until it goes away since
+	// that is the only way Okta provides to be sure that a group
+	// is really gone.
+	var err error
+	err = nil
+	for err == nil {
+		_, err = o.c.Group.DeleteGroup(oktaID)
+		if err != nil {
+			appLogger.Warn("Failed to delete Okta Group", "group", g.GetName(), "oktaID", oktaID, "error", err)
+		}
+
+		_, _, err = o.c.Group.GetGroup(oktaID, nil)
+		appLogger.Debug("Error after getting group", "error", err)
+	}
+
+	return g, nil
 }
