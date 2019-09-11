@@ -3,6 +3,7 @@ package impl
 import (
 	"context"
 	"os"
+	"time"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/okta/okta-sdk-golang/okta"
@@ -38,6 +39,9 @@ func init() {
 	viper.SetDefault("plugin.okta.orgurl", "")
 	viper.SetDefault("plugin.okta.tokan", "")
 	viper.SetDefault("plugin.okta.domain", "")
+	viper.SetDefault("plugin.okta.interval", time.Minute*20)
+
+	viper.Set("client.ServiceName", "okta-groupsync")
 
 	cfg = viper.Sub("plugin.okta")
 }
@@ -54,8 +58,13 @@ func New() tree.Plugin {
 		appLogger.Error("Okta Error during initailization", "error", err)
 	}
 
-	return OktaPlugin{
+	x := OktaPlugin{
 		NullPlugin: tree.NullPlugin{},
 		c:          client,
 	}
+
+	x.syncGroups()
+	go x.groupSyncTimer()
+
+	return x
 }
