@@ -10,7 +10,7 @@ import (
 	pb "github.com/NetAuth/Protocol"
 )
 
-// EntityCreate propogates entity creation events.  This makes certain
+// EntityCreate propagates entity creation events.  This makes certain
 // assumptions around how the okta logins are setup, and how usernames
 // are provisioned.
 func (o OktaPlugin) EntityCreate(e, de pb.Entity) (pb.Entity, error) {
@@ -134,7 +134,7 @@ func (o OktaPlugin) EntityDestroy(e pb.Entity) (pb.Entity, error) {
 	return e, nil
 }
 
-// PostSecretChange propogates the secret change directly to Okta via
+// PostSecretChange propagates the secret change directly to Okta via
 // an administrative password change.  Technically this pushes a
 // plaintext password to Okta, and its assumed that Okta will do the
 // right thing with it.  The alternative is syncing a hash (which is
