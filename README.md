@@ -1,5 +1,6 @@
 # Okta
 
+[![Build Status](https://travis-ci.org/NetAuth/plugin-okta.svg?branch=master)](https://travis-ci.org/NetAuth/plugin-okta)
 [![Go Report Card](https://goreportcard.com/badge/github.com/NetAuth/plugin-okta)](https://goreportcard.com/report/github.com/NetAuth/plugin-okta)
 
 The Okta plugin provides a means to synchronize your NetAuth server

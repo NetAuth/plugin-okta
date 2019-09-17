@@ -1,0 +1,16 @@
+---
+language: go
+
+before_script:
+  - go mod vendor
+
+go:
+  - "1.x"
+
+install: true
+
+env:
+  - GO111MODULE=on
+
+notifications:
+  email: false
