@@ -1,5 +1,7 @@
 # Okta
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/NetAuth/plugin-okta)](https://goreportcard.com/report/github.com/NetAuth/plugin-okta)
+
 The Okta plugin provides a means to synchronize your NetAuth server
 with Okta.  This allows you to easily use Okta to provide SAML and
 OIDC services with the same credentials that the rest of your
