@@ -18,6 +18,10 @@ func (o OktaPlugin) groupSyncTimer() {
 
 func (o OktaPlugin) syncGroups() {
 	c, err := client.New()
+	if err != nil {
+		appLogger.Warn("Not running syncGroups()", "error", err)
+		return
+	}
 	groups, err := c.SearchGroups("*")
 	if err != nil {
 		appLogger.Warn("Not running syncGroups()", "error", err)
