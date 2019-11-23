@@ -3,14 +3,14 @@ package impl
 import (
 	"github.com/okta/okta-sdk-golang/okta"
 
-	"github.com/NetAuth/NetAuth/pkg/plugin/tree"
+	"github.com/netauth/netauth/pkg/plugin/tree"
 
-	pb "github.com/NetAuth/Protocol"
+	pb "github.com/netauth/Protocol"
 )
 
 // GroupCreate will create a matched group in Okta.  Assigning
 // applications to this group must still be done in Okta directly, but
-// the group and its attributes are mapped from NetAuth.
+// the group and its attributes are mapped from netauth.
 func (o OktaPlugin) GroupCreate(g pb.Group) (pb.Group, error) {
 	og := okta.Group{
 		Profile: &okta.GroupProfile{

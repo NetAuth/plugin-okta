@@ -3,9 +3,9 @@ package impl
 import (
 	"strings"
 
-	"github.com/NetAuth/NetAuth/pkg/plugin/tree"
+	"github.com/netauth/netauth/pkg/plugin/tree"
 
-	pb "github.com/NetAuth/Protocol"
+	pb "github.com/netauth/Protocol"
 )
 
 func getEntityOktaID(e pb.Entity) string {

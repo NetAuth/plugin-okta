@@ -3,9 +3,9 @@ package impl
 import (
 	"time"
 
-	"github.com/NetAuth/NetAuth/pkg/client"
+	"github.com/netauth/netauth/pkg/client"
 
-	pb "github.com/NetAuth/Protocol"
+	pb "github.com/netauth/Protocol"
 )
 
 func (o OktaPlugin) groupSyncTimer() {

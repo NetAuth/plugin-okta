@@ -3,11 +3,11 @@ package impl
 import (
 	"github.com/okta/okta-sdk-golang/okta"
 
-	"github.com/NetAuth/NetAuth/pkg/plugin/tree"
+	"github.com/netauth/netauth/pkg/plugin/tree"
 )
 
 // OktaPlugin is the implementation of the plugin that can talk to
-// both NetAuth and to Okta.
+// both netauth and to Okta.
 type OktaPlugin struct {
 	tree.NullPlugin
 

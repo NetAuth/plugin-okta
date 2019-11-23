@@ -5,9 +5,9 @@ import (
 
 	"github.com/okta/okta-sdk-golang/okta"
 
-	"github.com/NetAuth/NetAuth/pkg/plugin/tree"
+	"github.com/netauth/netauth/pkg/plugin/tree"
 
-	pb "github.com/NetAuth/Protocol"
+	pb "github.com/netauth/Protocol"
 )
 
 // EntityCreate propagates entity creation events.  This makes certain

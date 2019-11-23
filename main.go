@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/NetAuth/plugin-okta/impl"
+	"github.com/netauth/plugin-okta/impl"
 
-	"github.com/NetAuth/NetAuth/pkg/plugin/tree"
+	"github.com/netauth/netauth/pkg/plugin/tree"
 )
 
 func main() {
