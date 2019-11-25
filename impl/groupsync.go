@@ -5,7 +5,7 @@ import (
 
 	"github.com/netauth/netauth/pkg/client"
 
-	pb "github.com/netauth/Protocol"
+	pb "github.com/netauth/protocol"
 )
 
 func (o OktaPlugin) groupSyncTimer() {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/netauth/netauth/pkg/plugin/tree"
 
-	pb "github.com/netauth/Protocol"
+	pb "github.com/netauth/protocol"
 )
 
 // GroupCreate will create a matched group in Okta.  Assigning

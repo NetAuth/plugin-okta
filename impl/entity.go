@@ -7,7 +7,7 @@ import (
 
 	"github.com/netauth/netauth/pkg/plugin/tree"
 
-	pb "github.com/netauth/Protocol"
+	pb "github.com/netauth/protocol"
 )
 
 // EntityCreate propagates entity creation events.  This makes certain
